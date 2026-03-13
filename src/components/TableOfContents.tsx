@@ -14,7 +14,7 @@ export default function TableOfContents() {
 
     useEffect(() => {
         // Select all h2, h3, h4 elements within the article content
-        const elements = Array.from(document.querySelectorAll('.article-content h2, .article-content h3, .article-content h4')) as HTMLElement[];
+        const elements = Array.from(document.querySelectorAll('.article-html-content h2, .article-html-content h3, .article-html-content h4')) as HTMLElement[];
 
         const items: TocItem[] = elements.map((elem) => {
             // Create an ID if it doesn't have one

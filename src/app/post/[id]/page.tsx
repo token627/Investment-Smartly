@@ -2,9 +2,40 @@ import { posts } from '@/data/posts';
 import { notFound } from 'next/navigation';
 import Link from 'next/link';
 import TableOfContents from '@/components/TableOfContents';
+import type { Metadata } from 'next';
 
 export function generateStaticParams() {
     return posts.map(post => ({ id: post.id }));
+}
+
+export async function generateMetadata({ params }: { params: Promise<{ id: string }> }): Promise<Metadata> {
+    const resolvedParams = await params;
+    const post = posts.find(p => p.id === resolvedParams.id);
+    if (!post) return { title: 'Post Not Found' };
+
+    return {
+        title: post.title,
+        description: post.excerpt,
+        openGraph: {
+            title: post.title,
+            description: post.excerpt,
+            url: `https://www.tradesmartly.in/post/${post.id}`,
+            type: 'article',
+            publishedTime: post.date,
+            authors: [post.author],
+            images: [
+                {
+                    url: post.imageUrl,
+                    width: 800,
+                    height: 600,
+                    alt: post.title,
+                }
+            ]
+        },
+        alternates: {
+            canonical: `/post/${post.id}`
+        }
+    };
 }
 
 export default async function Post({ params }: { params: Promise<{ id: string }> }) {
@@ -15,8 +46,33 @@ export default async function Post({ params }: { params: Promise<{ id: string }>
         notFound();
     }
 
+    const jsonLd = {
+        "@context": "https://schema.org",
+        "@type": "BlogPosting",
+        "headline": post.title,
+        "image": post.imageUrl,
+        "author": {
+            "@type": "Person",
+            "name": post.author
+        },
+        "publisher": {
+            "@type": "Organization",
+            "name": "TradeSmartly",
+            "logo": {
+                "@type": "ImageObject",
+                "url": "https://www.tradesmartly.in/logo.png"
+            }
+        },
+        "datePublished": post.date,
+        "description": post.excerpt
+    };
+
     return (
         <main className="main-content">
+            <script
+                type="application/ld+json"
+                dangerouslySetInnerHTML={{ __html: JSON.stringify(jsonLd) }}
+            />
             <div className="radiant-bg" style={{ height: '400px', opacity: 0.5 }} />
             <div className="container" style={{ maxWidth: '1440px' }}>
                 <Link
@@ -44,48 +100,11 @@ export default async function Post({ params }: { params: Promise<{ id: string }>
                         <p style={{ fontSize: '1.25rem', color: 'var(--text-color)', lineHeight: 1.8, marginBottom: '2rem', fontWeight: 500 }}>
                             {post.excerpt}
                         </p>
-                        <div style={{ lineHeight: 1.8, color: 'var(--text-muted)', fontSize: '1.125rem' }}>
-                            <h2 style={{ color: 'var(--text-color)', marginTop: '2.5rem', marginBottom: '1.25rem', fontSize: '1.75rem' }}>Introduction to Market Dynamics</h2>
-                            <p style={{ marginBottom: '1.5rem' }}>
-                                The current landscape of the market presents unique challenges and opportunities. As investors navigate through these turbulent times, understanding the underlying mechanics becomes increasingly important. {post.content}
-                            </p>
-
-                            <h3 style={{ color: 'var(--text-color)', marginTop: '2rem', marginBottom: '1rem', fontSize: '1.5rem' }}>Analyzing Historical Volatility</h3>
-                            <p style={{ marginBottom: '1.5rem' }}>
-                                Historical data suggests that periods of high volatility often precede significant directional moves. By analyzing volume profiles and institutional order flow, one can start to see a clearer picture emerging from the noise.
-                            </p>
-
-                            <h4 style={{ color: 'var(--text-color)', marginTop: '1.5rem', marginBottom: '1rem', fontSize: '1.25rem' }}>Volume Profile Indicators</h4>
-                            <p style={{ marginBottom: '1.5rem' }}>
-                                Volume Profile displays trading activity over a specified time period at specified price levels. The study plots a histogram on the chart meant to reveal dominant and/or significant price levels based on volume. Exactly understanding this requires tracking Value Area and Point of Control (POC).
-                            </p>
-
-                            <h4 style={{ color: 'var(--text-color)', marginTop: '1.5rem', marginBottom: '1rem', fontSize: '1.25rem' }}>Institutional Order Flow</h4>
-                            <p style={{ marginBottom: '1.5rem' }}>
-                                Smart money leaves footprints. Utilizing Level 2 data and dark pool prints can identify where whales are accumulating under the radar.
-                            </p>
-
-                            <h2 style={{ color: 'var(--text-color)', marginTop: '2.5rem', marginBottom: '1.25rem', fontSize: '1.75rem' }}>Macroeconomic Factors</h2>
-                            <p style={{ marginBottom: '1.5rem' }}>
-                                Technical analysis alone cannot explain every market movement. We must zoom out and assess the broader macroeconomic environment.
-                            </p>
-
-                            <h3 style={{ color: 'var(--text-color)', marginTop: '2rem', marginBottom: '1rem', fontSize: '1.5rem' }}>Interest Rates &amp; Inflation</h3>
-                            <p style={{ marginBottom: '1.5rem' }}>
-                                Central bank policies remain the ultimate driver of liquidity. As the &quot;risk-free&quot; rate fluccuates, it instantly forces a repricing of risk assets across equities and crypto.
-                            </p>
-
-                            <div style={{ margin: '3rem 0', padding: '1.5rem', borderLeft: '4px solid var(--primary-color)', backgroundColor: 'rgba(59, 130, 246, 0.05)', borderRadius: '0 0.5rem 0.5rem 0' }}>
-                                <p style={{ fontStyle: 'italic', fontSize: '1.25rem', color: 'var(--text-color)', margin: 0 }}>
-                                    &quot;The markets are a mechanism for transferring wealth from the impatient to the patient.&quot;
-                                </p>
-                            </div>
-
-                            <h2 style={{ color: 'var(--text-color)', marginTop: '2.5rem', marginBottom: '1.25rem', fontSize: '1.75rem' }}>The Road Ahead</h2>
-                            <p>
-                                Looking forward, key levels to watch include previous resistance turning into support. The macroeconomic backdrop, including interest rate decisions and geopolitical events, will likely act as the primary catalysts for the foreseeable future. Risk management remains paramount.
-                            </p>
-                        </div>
+                        <div
+                            className="article-html-content"
+                            style={{ lineHeight: 1.8, color: 'var(--text-muted)', fontSize: '1.125rem' }}
+                            dangerouslySetInnerHTML={{ __html: post.content }}
+                        />
                     </div>
 
                     {/* Sidebar Area */}

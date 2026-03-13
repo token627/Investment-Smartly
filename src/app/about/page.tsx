@@ -1,6 +1,28 @@
+import type { Metadata } from 'next';
+
+export const metadata: Metadata = {
+    title: 'About Us',
+    description: 'Learn about our mission to democratize financial intelligence.',
+    alternates: {
+        canonical: '/about',
+    }
+};
+
 export default function About() {
+    const jsonLd = {
+        "@context": "https://schema.org",
+        "@type": "Organization",
+        "name": "TradeSmartly",
+        "url": "https://www.tradesmartly.in",
+        "logo": "https://www.tradesmartly.in/logo.png"
+    };
+
     return (
         <main className="main-content">
+            <script
+                type="application/ld+json"
+                dangerouslySetInnerHTML={{ __html: JSON.stringify(jsonLd) }}
+            />
             <div className="radiant-bg" />
             <div className="container" style={{ maxWidth: '800px' }}>
                 <h1 style={{ textAlign: 'center', marginBottom: '3rem' }}>
