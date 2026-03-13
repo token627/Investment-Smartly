@@ -8,22 +8,22 @@ export default function About() {
                 </h1>
 
                 <div className="card" style={{ padding: '2.5rem', marginBottom: '3rem' }}>
-                    <h2 style={{ fontSize: '1.75rem', marginBottom: '1.5rem', fontFamily: 'var(--font-outfit)' }}>Our Mission at InvestmentSmartly</h2>
+                    <h2 style={{ fontSize: '1.75rem', marginBottom: '1.5rem', fontFamily: 'var(--font-outfit)' }}>Our Mission at TradeSmartly</h2>
                     <p style={{ marginBottom: '1.5rem', fontSize: '1.1rem', lineHeight: 1.8 }}>
-                        At <strong>InvestmentSmartly.com</strong>, we believe that building wealth shouldn&apos;t be reserved for Wall Street insiders and institutional giants. Our mission is to democratize financial intelligence by providing comprehensive, actionable, and unbiased market analysis to the everyday investor.
+                        At <strong>TradeSmartly.in</strong>, we believe that building wealth shouldn&apos;t be reserved for Wall Street insiders and institutional giants. Our mission is to democratize financial intelligence by providing comprehensive, actionable, and unbiased market analysis to the everyday investor.
                     </p>
                     <p style={{ marginBottom: '1.5rem', fontSize: '1.1rem', lineHeight: 1.8 }}>
                         Whether you are a seasoned trader analyzing micro-cap volatility or a long-term investor looking for stable dividend growth, the sheer volume of financial data available today can be overwhelming. We cut through the noise. We synthesize macroeconomic trends, technical patterns, and fundamental valuations into clear, digestible insights that you can use to make smarter decisions.
                     </p>
                     <p style={{ fontSize: '1.1rem', lineHeight: 1.8 }}>
-                        Our name, <em>InvestmentSmartly</em>, reflects our core ethos: we prioritize rational, data-driven strategies over emotional reactions to market hysteria.
+                        Our name, <em>TradeSmartly</em>, reflects our core ethos: we prioritize rational, data-driven strategies over emotional reactions to market hysteria.
                     </p>
                 </div>
 
                 <div className="card" style={{ padding: '2.5rem', marginBottom: '3rem' }}>
                     <h2 style={{ fontSize: '1.75rem', marginBottom: '1.5rem', fontFamily: 'var(--font-outfit)' }}>Our Story & Philosophy</h2>
                     <p style={{ marginBottom: '1.5rem', fontSize: '1.1rem', lineHeight: 1.8 }}>
-                        Founded in 2024 by a coalition of former portfolio managers, data scientists, and financial technologists, InvestmentSmartly was born out of frustration. We saw a stark divide between the sophisticated tools available to hedge funds and the sensationalist news fed to retail investors.
+                        Founded in 2024 by a coalition of former portfolio managers, data scientists, and financial technologists, TradeSmartly was born out of frustration. We saw a stark divide between the sophisticated tools available to hedge funds and the sensationalist news fed to retail investors.
                     </p>
                     <p style={{ fontSize: '1.1rem', lineHeight: 1.8 }}>
                         We adhere to three main pillars of financial philosophy:
@@ -36,7 +36,7 @@ export default function About() {
                 </div>
 
                 <div className="card" style={{ padding: '2.5rem' }}>
-                    <h2 style={{ fontSize: '1.75rem', marginBottom: '1.5rem', fontFamily: 'var(--font-outfit)' }}>Why Choose InvestmentSmartly?</h2>
+                    <h2 style={{ fontSize: '1.75rem', marginBottom: '1.5rem', fontFamily: 'var(--font-outfit)' }}>Why Choose TradeSmartly?</h2>
                     <div className="grid grid-cols-1 md:grid-cols-2" style={{ gap: '2rem' }}>
                         <div>
                             <h3 style={{ fontSize: '1.25rem', marginBottom: '0.75rem', color: 'var(--primary-color)' }}>Expert Analysis</h3>

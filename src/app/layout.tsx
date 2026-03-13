@@ -8,7 +8,7 @@ const inter = Inter({ subsets: ['latin'], variable: '--font-inter' });
 const outfit = Outfit({ subsets: ['latin'], variable: '--font-outfit' });
 
 export const metadata: Metadata = {
-  title: 'InvestmentSmartly | Smart Investing For Everyone',
+  title: 'TradeSmartly | Smart Investing For Everyone',
   description: 'Empowering you to make smarter financial decisions with premium market insights and analysis.',
 };
 

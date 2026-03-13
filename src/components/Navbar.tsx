@@ -5,7 +5,7 @@ export default function Navbar() {
         <header className="glass" style={{ position: 'sticky', top: 0, zIndex: 50 }}>
             <div className="container" style={{ display: 'flex', alignItems: 'center', justifyContent: 'space-between', height: '4rem' }}>
                 <Link href="/" style={{ fontSize: '1.5rem', fontWeight: 700, fontFamily: 'var(--font-outfit)', letterSpacing: '-0.02em' }}>
-                    Investment<span className="gradient-text">Smartly</span>
+                    Trade<span className="gradient-text">Smartly</span>
                 </Link>
                 <nav style={{ display: 'flex', gap: '2rem' }}>
                     <Link href="/" style={{ fontWeight: 500 }}>Home</Link>
