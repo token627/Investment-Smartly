@@ -17,6 +17,9 @@ export default function Footer() {
                 <p style={{ color: 'var(--text-muted)', fontSize: '0.875rem', margin: 0 }}>
                     &copy; {new Date().getFullYear()} TradeSmartly.in. All rights reserved.
                 </p>
+                <p style={{ color: 'var(--text-muted)', fontSize: '0.875rem', margin: 0, marginTop: '0.5rem', textAlign: 'center' }}>
+                    Zerodha Broking Ltd.: SEBI Registration no: INZ000031633 | Token Ahammed Mallick | NSE AP reg. no.: AP2516003781
+                </p>
             </div>
         </footer>
     );
